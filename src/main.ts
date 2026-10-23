@@ -1,11 +1,20 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
+//image imports
+//image taken from website:https://freesvg.org/eye-silhouette, image under the public domain, published by OpenClipart
+import eye1 from "./assets/eye1.png?no-online";
+//image taken from website:https://www.needpix.com/photo/download/970142/eye-computer-icon-vector-focus-concept-looking-at-view-optometry-eyeball-symbol-human-eye, image in the public domain, uploaded by mohamed_hassan
+import eye2 from "./assets/eye2.png?no-online";
+
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A neutral face with two eyes taken from different images",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -17,27 +26,28 @@ head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
 
-const leftEye = document.createElementNS(
+//add left and right eyes to face
+const eye1img = document.createElementNS(
   "http://www.w3.org/2000/svg",
-  "ellipse",
+  "image",
 );
-leftEye.setAttribute("cx", "72");
-leftEye.setAttribute("cy", "82");
-leftEye.setAttribute("rx", "6");
-leftEye.setAttribute("ry", "9");
-leftEye.setAttribute("fill", "#302c29");
-face.append(leftEye);
+eye1img.setAttribute("href", eye1);
+eye1img.setAttribute("x", "50");
+eye1img.setAttribute("y", "60");
+eye1img.setAttribute("width", "40");
+eye1img.setAttribute("height", "40");
+face.append(eye1img);
 
-const rightEye = document.createElementNS(
+const eye2img = document.createElementNS(
   "http://www.w3.org/2000/svg",
-  "ellipse",
+  "image",
 );
-rightEye.setAttribute("cx", "128");
-rightEye.setAttribute("cy", "82");
-rightEye.setAttribute("rx", "6");
-rightEye.setAttribute("ry", "9");
-rightEye.setAttribute("fill", "#302c29");
-face.append(rightEye);
+eye2img.setAttribute("href", eye2);
+eye2img.setAttribute("x", "110");
+eye2img.setAttribute("y", "60");
+eye2img.setAttribute("width", "43");
+eye2img.setAttribute("height", "43");
+face.append(eye2img);
 
 const nose = document.createElementNS("http://www.w3.org/2000/svg", "line");
 nose.setAttribute("x1", "100");
