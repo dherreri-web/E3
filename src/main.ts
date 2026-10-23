@@ -5,7 +5,7 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute("aria-label", "A neutral face with straight brown hair");
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -60,6 +60,40 @@ mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
 
 portrait.append(face);
+
+//list of haircolors
+const haircolors = ["#5A3825", "#4a2e1f", "#5c3927", "#5c3724", "#4d2f1f"];
+
+//adding 125 strands of hair
+for (let i = 0; i < 125; i++) {
+  const hair = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path",
+  );
+
+  //start and end X values of each hair strand
+  const startX = 30 + (1.2 * i);
+  //ternary operator that adds middle part
+  const endX = startX > 100 ? startX + 5 : startX - 5;
+
+  //start and end Y values of each hair strand
+  //equation of the top part of the ellipse
+  const startY = 93 - 86 * Math.sqrt(1 - Math.pow((startX - 100) / 78, 2));
+  //Adding hair lenght of 20
+  const endY = startY + 20;
+
+  hair.setAttribute(
+    "d",
+    `M ${startX} ${startY} Q ${startX - 5} 40, ${endX} ${endY}`,
+  );
+
+  hair.setAttribute("fill", "none");
+  hair.setAttribute("stroke", haircolors[i % 5]);
+  hair.setAttribute("stroke-width", "1.5");
+  hair.setAttribute("stroke-linecap", "round");
+
+  face.append(hair);
+}
 
 spin.addEventListener("click", () => {
   // Restart rather than accumulate simultaneous animations on repeated clicks.
