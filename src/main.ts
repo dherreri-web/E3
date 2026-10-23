@@ -1,22 +1,11 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
-<<<<<<< HEAD
 function buildFace(): SVGSVGElement {
   const face = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "svg",
   );
-=======
-// The prototype grew inline. Keep it this way until the refactoring checkpoint.
-const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-face.setAttribute("viewBox", "0 0 200 200");
-face.setAttribute("role", "img");
-face.setAttribute(
-  "aria-label",
-  "A smirking face with a background gradient switching from green to blue.",
-);
->>>>>>> 05972f3 ([C] Updated aria label)
 
   // The prototype grew inline. Keep it this way until the refactoring checkpoint.
   face.setAttribute("viewBox", "0 0 200 200");
@@ -76,54 +65,55 @@ face.setAttribute(
   smirk.setAttribute("stroke-linecap", "round");
   face.append(smirk);
 
-portrait.append(face);
+  portrait.append(face);
 
-//creating a gradient
-const Gradient = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "linearGradient",
-);
-Gradient.setAttribute("id", "Gradient");
-Gradient.setAttribute("x1", "0%");
-Gradient.setAttribute("x2", "0%");
-Gradient.setAttribute("y1", "0%");
-Gradient.setAttribute("y2", "100%");
+  //creating a gradient
+  const Gradient = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "linearGradient",
+  );
+  Gradient.setAttribute("id", "Gradient");
+  Gradient.setAttribute("x1", "0%");
+  Gradient.setAttribute("x2", "0%");
+  Gradient.setAttribute("y1", "0%");
+  Gradient.setAttribute("y2", "100%");
 
-const blue_gradient = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "stop",
-);
-blue_gradient.setAttribute("offset", "0%");
-blue_gradient.setAttribute("stop-color", "#2563EB");
+  const blue_gradient = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  blue_gradient.setAttribute("offset", "0%");
+  blue_gradient.setAttribute("stop-color", "#2563EB");
 
-const green_gradient = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "stop",
-);
-green_gradient.setAttribute("offset", "100%");
-green_gradient.setAttribute("stop-color", "#9fe2bf");
+  const green_gradient = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  green_gradient.setAttribute("offset", "100%");
+  green_gradient.setAttribute("stop-color", "#9fe2bf");
 
-Gradient.append(blue_gradient, green_gradient);
+  Gradient.append(blue_gradient, green_gradient);
 
-const defs = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "defs",
-);
-defs.append(Gradient);
-face.append(defs);
+  const defs = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "defs",
+  );
+  defs.append(Gradient);
+  face.append(defs);
 
-//create rectangle with gradient to take place of background
-const background = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "rect",
-);
-background.setAttribute("x", "0");
-background.setAttribute("y", "0");
-background.setAttribute("width", "200");
-background.setAttribute("height", "200");
-background.setAttribute("fill", "url(#Gradient");
-face.prepend(background);
+  //create rectangle with gradient to take place of background
+  const background = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "rect",
+  );
+  background.setAttribute("x", "0");
+  background.setAttribute("y", "0");
+  background.setAttribute("width", "200");
+  background.setAttribute("height", "200");
+  background.setAttribute("fill", "url(#Gradient");
+  face.prepend(background);
 
+  return face;
 }
 
 const face = buildFace();
